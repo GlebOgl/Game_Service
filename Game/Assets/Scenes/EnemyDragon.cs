@@ -12,7 +12,14 @@ public class EnemyDragon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Invoke("DropEgg", 2f);
+    }
+
+    void DropEgg(){
+        Vector3 myVector = new Vector3(0.0f, 5.0f, 0.0f);
+        GameObject egg = Instantiate<GameObject>(dragonEggPrefab);
+        egg.transform.position = transform.position + myVector;
+        Invoke("DropEgg", timeBetweenEggDrops);
     }
 
     // Update is called once per frame
