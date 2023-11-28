@@ -1,0 +1,2 @@
+Build path: D:/game_builds/DragonPicker/v2
+Build number: 142
