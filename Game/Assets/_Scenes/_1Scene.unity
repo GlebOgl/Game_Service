@@ -143,7 +143,7 @@ MonoBehaviour:
   dragonEggPrefab: {fileID: 7249068544441171448, guid: 2b411a024e4bcc147af303f42e3efed4, type: 3}
   speed: 4
   timeBetweenEggDrops: 2
-  leftRightDistance: 10
+  leftRightDistance: 20
   chanceDirection: 0.01
 --- !u!1 &339785669
 GameObject:
@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607, type: 3}
       propertyPath: m_LocalPosition.x
@@ -812,7 +812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 485588, guid: 060a08e2799793345bb8694476f10fea, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 485588, guid: 060a08e2799793345bb8694476f10fea, type: 3}
       propertyPath: m_LocalPosition.x
