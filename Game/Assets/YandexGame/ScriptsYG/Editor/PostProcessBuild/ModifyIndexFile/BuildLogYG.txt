@@ -1,2 +1,2 @@
-Build path: D:/game_builds/DragonPicker/v2
-Build number: 143
+Build path: D:/game_builds/DragonPicker/YandexBuildV0.1
+Build number: 144
