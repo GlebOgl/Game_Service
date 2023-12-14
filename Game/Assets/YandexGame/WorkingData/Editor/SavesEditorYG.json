@@ -1,8 +1,11 @@
 {
-    "idSave": 2,
+    "idSave": 6,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "score": 2,
-    "bestScore": 4
+    "score": 0,
+    "bestScore": 4,
+    "achivment": [
+        "Береги щиты!!!"
+    ]
 }

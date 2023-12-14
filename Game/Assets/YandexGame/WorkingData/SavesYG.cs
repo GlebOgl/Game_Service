@@ -20,6 +20,7 @@ namespace YG
 
         public int score;
         public int bestScore = 0;
+        public string[] achivment;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 
