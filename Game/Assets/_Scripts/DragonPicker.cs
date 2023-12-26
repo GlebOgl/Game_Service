@@ -28,7 +28,7 @@ public class DragonPicker : MonoBehaviour
         for (int i = 1; i <= numEnergyShield; i++){
             GameObject tShieldGo = Instantiate<GameObject>(energyShieldPrefab);
             tShieldGo.transform.position = new Vector3(0, energyShieldBottomY, 0);
-            tShieldGo.transform.localScale = new Vector3(1 * i, 1 * i,1 * i);
+            tShieldGo.transform.localScale = new Vector3(1 * i * energyShieldRadius, 1 * i * energyShieldRadius,1 * i * energyShieldRadius);
             shieldList.Add(tShieldGo);
         }
     }
@@ -37,6 +37,25 @@ public class DragonPicker : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SaveAfterDeath(){
+        GameObject scoreGO = GameObject.Find("Score");
+        scoreGT = scoreGO.GetComponent<TextMeshProUGUI>();
+            
+        string[] achivList;
+        achivList = YandexGame.savesData.achivment;
+        achivList[0] = "Береги щиты!!!";
+            
+        UserSave(int.Parse(scoreGT.text), YandexGame.savesData.bestScore, achivList);
+
+
+        YandexGame.NewLeaderboardScores("TOPPlayerScore", int.Parse(scoreGT.text));
+
+        YandexGame.RewVideoShow(0);
+
+        SceneManager.LoadScene("_0Scene");
+        GetLoadSave();
     }
 
     public void DragonEggDestroyed(){
@@ -50,22 +69,7 @@ public class DragonPicker : MonoBehaviour
         Destroy(tShieldGo);
 
         if (shieldList.Count == 0){
-            GameObject scoreGO = GameObject.Find("Score");
-            scoreGT = scoreGO.GetComponent<TextMeshProUGUI>();
-            
-            string[] achivList;
-            achivList = YandexGame.savesData.achivment;
-            achivList[0] = "Береги щиты!!!";
-            
-            UserSave(int.Parse(scoreGT.text), YandexGame.savesData.bestScore, achivList);
-
-
-            YandexGame.NewLeaderboardScores("TOPPlayerScore", int.Parse(scoreGT.text));
-
-            YandexGame.RewVideoShow(0);
-
-            SceneManager.LoadScene("_0Scene");
-            GetLoadSave();
+            SaveAfterDeath();
         }
     }
 

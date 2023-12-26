@@ -29,10 +29,11 @@ public class DragonEgg : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (transform.position.y < bottomY){
             Destroy(this.gameObject);
-            DragonPicker apScript = Camera.main.GetComponent<DragonPicker>();
-            apScript.DragonEggDestroyed();
+            //DragonPicker apScript = Camera.main.GetComponent<DragonPicker>();
+            //apScript.DragonEggDestroyed();
         }
     }
 }
