@@ -66,11 +66,9 @@ public class EnemyDragon : MonoBehaviour
     {
         if (!Player)
             Player = GameObject.FindGameObjectWithTag("Player");
-        if (health <= 0){
-            if (isMainDragon)
-                SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1)%6);
-            else
-                Destroy(this.gameObject);
+        if (health <= 0) {
+            GameManager.Instance.OnDragonKilled(this);
+            Destroy(gameObject);
         }
 
         Vector3 pos = transform.position;
