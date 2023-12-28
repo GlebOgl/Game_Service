@@ -54,10 +54,8 @@ public class EnergyShield : MonoBehaviour
 
             healthGT.text = "Здровье - " + health;
 
-            if (health <= 0){
-                DragonPicker apScript = Camera.main.GetComponent<DragonPicker>();
-                apScript.SaveAfterDeath();
-            }
+            if (health <= 0)
+                GameManager.Instance.SaveAfterDeath();
         }
     }
 }
