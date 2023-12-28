@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6272092041603778107}
   m_Layer: 0
   m_Name: EnergyShield
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreGT: {fileID: 0}
+  healthGT: {fileID: 0}
   audioSource: {fileID: 0}
+  health: 100
 --- !u!82 &6272092041603778107
 AudioSource:
   m_ObjectHideFlags: 0
