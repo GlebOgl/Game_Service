@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         if (nextScene >= SceneManager.sceneCountInBuildSettings)
             GameEnded();
         else
-            SceneManager.LoadScene(nextScene);
+            StartCoroutine(LoadSceneWithDelay(nextScene, 2f));
     }
 
     public void LoadSave()
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
     {
         achievements.Add("Береги щиты!!!");
 
-        YandexGame.RewVideoShow(0);
+        //YandexGame.RewVideoShow(0);
         
         GameEnded();
     }
@@ -107,7 +107,8 @@ public class GameManager : MonoBehaviour
         StoreSave();
 
         YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);
-        SceneManager.LoadScene("_0Scene");
+
+        StartCoroutine(LoadSceneWithDelay("_0Scene", 2f));
 
         LoadSave();
 
@@ -119,5 +120,21 @@ public class GameManager : MonoBehaviour
         var scoreDisplay = GameObject.Find("Score")?.GetComponent<TextMeshProUGUI>();
         if (scoreDisplay)
             scoreDisplay.text = "Очки: " + currentScore;
+    }
+
+    public IEnumerator LoadSceneWithDelay(string name, float delay)
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(delay);
+        SceneManager.LoadScene(name);
+        Time.timeScale = 1f;
+    }
+
+    public IEnumerator LoadSceneWithDelay(int index, float delay)
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(delay);
+        SceneManager.LoadScene(index);
+        Time.timeScale = 1f;
     }
 }

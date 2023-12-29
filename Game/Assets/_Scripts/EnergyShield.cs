@@ -57,7 +57,10 @@ public class EnergyShield : MonoBehaviour
             UpdateHealth();
 
             if (health <= 0)
+            {
                 GameManager.Instance.PlayerDied();
+                Destroy(gameObject);
+            }
         }
     }
 
