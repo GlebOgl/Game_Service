@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     private List<string> achievements = new List<string>();
     private int currentScore;
-    private int coins;
 
     void Start()
     {
@@ -32,6 +31,9 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (YandexGame.SDKEnabled)
+            LoadSave();
     }
 
     void Update()
@@ -51,31 +53,32 @@ public class GameManager : MonoBehaviour
 
     private void OnNewSceneLoaded(Scene oldScene, Scene newScene)
     {
-        if (YandexGame.SDKEnabled)
-        {
-            LoadSave();
-        }
-
-        currentScore = 0;
         UpdateScore();
     }
 
     public void OnDragonKilled(EnemyDragon killed)
     {
-        if (killed.isMainDragon)
-            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % 6);
+        if (!killed.isMainDragon)
+            return;
+
+        score += killed.reward;
+
+        var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        
+        if (nextScene >= SceneManager.sceneCountInBuildSettings)
+            GameEnded();
+        else
+            SceneManager.LoadScene(nextScene);
     }
 
     public void LoadSave()
     {
-        var playerNamePrefabGUI = GameObject.Find("PlayerName");
-        var playerName = playerNamePrefabGUI.GetComponent<TextMeshProUGUI>();
-        playerName.text = YandexGame.playerName;
-
-        coins = YandexGame.savesData.coins;
+        var playerName = GameObject.Find("PlayerName")?.GetComponent<TextMeshProUGUI>();
+        if (playerName)
+            playerName.text = YandexGame.playerName;
 
         achievements.Clear();
-        achievements.AddRange(YandexGame.savesData.achievement);
+        achievements.AddRange(YandexGame.savesData.achievement ?? new string[0]);
     }
 
     public void StoreSave()
@@ -84,7 +87,8 @@ public class GameManager : MonoBehaviour
         if (currentScore > YandexGame.savesData.bestScore)
             YandexGame.savesData.bestScore = currentScore;
         
-        YandexGame.savesData.coins = coins;
+        Debug.Log($"StoreSave: currentScore={currentScore}, lastScore={YandexGame.savesData.lastScore}, bestScore={YandexGame.savesData.bestScore}");
+
         YandexGame.savesData.achievement = achievements.ToArray();
         YandexGame.SaveProgress();
     }
@@ -93,12 +97,21 @@ public class GameManager : MonoBehaviour
     {
         achievements.Add("Береги щиты!!!");
 
-        StoreSave();
-        YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);
         YandexGame.RewVideoShow(0);
+        
+        GameEnded();
+    }
 
+    public void GameEnded()
+    {
+        StoreSave();
+
+        YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);
         SceneManager.LoadScene("_0Scene");
+
         LoadSave();
+
+        score = 0;
     }
 
     private void UpdateScore()
