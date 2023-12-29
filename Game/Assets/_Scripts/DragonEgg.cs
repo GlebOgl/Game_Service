@@ -14,6 +14,9 @@ public class DragonEgg : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        if (other.GetComponentInParent<EnemyDragon>() != null)
+            return;
+
         ParticleSystem ps = GetComponent<ParticleSystem>();
         var em = ps.emission;
         em.enabled = true;

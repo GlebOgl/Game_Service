@@ -18,9 +18,10 @@ namespace YG
 
         // Ваши сохранения
 
-        public int score;
+        public int lastScore;
         public int bestScore = 0;
-        public string[] achivment;
+        public int coins = 0;
+        public string[] achievement;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

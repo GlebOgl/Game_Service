@@ -10,11 +10,23 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public int score {
+        get => currentScore;
+        set {
+            currentScore = value;
+            UpdateScore();
+        }
+    }
+
+    private List<string> achievements = new List<string>();
+    private int currentScore;
+    private int coins;
+
     void Start()
     {
         if (Instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
 
@@ -28,12 +40,12 @@ public class GameManager : MonoBehaviour
     }
 
     void OnEnable() {
-        YandexGame.GetDataEvent += GetLoadSave;
+        YandexGame.GetDataEvent += LoadSave;
         SceneManager.activeSceneChanged += OnNewSceneLoaded;
     }
 
     void OnDisable() {
-        YandexGame.GetDataEvent -= GetLoadSave;
+        YandexGame.GetDataEvent -= LoadSave;
         SceneManager.activeSceneChanged -= OnNewSceneLoaded;
     }
 
@@ -41,8 +53,11 @@ public class GameManager : MonoBehaviour
     {
         if (YandexGame.SDKEnabled)
         {
-            GetLoadSave();
+            LoadSave();
         }
+
+        currentScore = 0;
+        UpdateScore();
     }
 
     public void OnDragonKilled(EnemyDragon killed)
@@ -51,42 +66,45 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % 6);
     }
 
-    public void GetLoadSave()
+    public void LoadSave()
     {
-        Debug.Log(YandexGame.savesData.score);
-        GameObject playerNamePrefabGUI = GameObject.Find("PlayerName");
+        var playerNamePrefabGUI = GameObject.Find("PlayerName");
         var playerName = playerNamePrefabGUI.GetComponent<TextMeshProUGUI>();
         playerName.text = YandexGame.playerName;
+
+        coins = YandexGame.savesData.coins;
+
+        achievements.Clear();
+        achievements.AddRange(YandexGame.savesData.achievement);
     }
 
-    public void UserSave(int currentScore, int currentBestScore, string[] currentAchiv)
+    public void StoreSave()
     {
-        YandexGame.savesData.score = currentScore;
-        if (currentScore > currentBestScore)
-        {
+        YandexGame.savesData.lastScore = currentScore;
+        if (currentScore > YandexGame.savesData.bestScore)
             YandexGame.savesData.bestScore = currentScore;
-        }
-        YandexGame.savesData.achivment = currentAchiv;
+        
+        YandexGame.savesData.coins = coins;
+        YandexGame.savesData.achievement = achievements.ToArray();
         YandexGame.SaveProgress();
     }
 
-    public void SaveAfterDeath()
+    public void PlayerDied()
     {
-        GameObject scoreGO = GameObject.Find("Score");
-        var scoreGT = scoreGO.GetComponent<TextMeshProUGUI>();
+        achievements.Add("Береги щиты!!!");
 
-        string[] achivList;
-        achivList = YandexGame.savesData.achivment;
-        achivList[0] = "Береги щиты!!!";
-
-        UserSave(int.Parse(scoreGT.text), YandexGame.savesData.bestScore, achivList);
-
-
-        YandexGame.NewLeaderboardScores("TOPPlayerScore", int.Parse(scoreGT.text));
-
+        StoreSave();
+        YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);
         YandexGame.RewVideoShow(0);
 
         SceneManager.LoadScene("_0Scene");
-        GetLoadSave();
+        LoadSave();
+    }
+
+    private void UpdateScore()
+    {
+        var scoreDisplay = GameObject.Find("Score")?.GetComponent<TextMeshProUGUI>();
+        if (scoreDisplay)
+            scoreDisplay.text = "Очки: " + currentScore;
     }
 }

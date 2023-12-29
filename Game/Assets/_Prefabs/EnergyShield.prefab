@@ -128,10 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0100f8911b7a734fb9da7786a856391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreGT: {fileID: 0}
   healthGT: {fileID: 0}
   audioSource: {fileID: 0}
   health: 100
+  energy: 0
+  energyPerShot: 0.5
+  projectilePrefab: {fileID: 8659799537469259798, guid: 1528679f1dc5a6b4f80f49bc64312612, type: 3}
 --- !u!82 &6272092041603778107
 AudioSource:
   m_ObjectHideFlags: 0

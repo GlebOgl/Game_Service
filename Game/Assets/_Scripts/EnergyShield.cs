@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using YG;
 using TMPro;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnergyShield : MonoBehaviour
 {
-    public TextMeshProUGUI scoreGT;
     public TextMeshProUGUI healthGT;
     public AudioSource audioSource;
 
     public int health = 100;
 
+    public float energy = 0;
+    public float energyPerShot = 2;
+
+    public GameObject projectilePrefab;
+
+
     void Start() {
-        GameObject scoreGO = GameObject.Find("Score");
-        scoreGT = scoreGO.GetComponent<TextMeshProUGUI>();
-        scoreGT.text = "0";
-        GameObject healthGO = GameObject.Find("Health");
-        healthGT = healthGO.GetComponent<TextMeshProUGUI>();
-        healthGT.text = "Здровье - " + health;
+        healthGT = GameObject.Find("Health").GetComponent<TextMeshProUGUI>();
+        UpdateHealth();
     }
 
     // Update is called once per frame
@@ -27,35 +29,50 @@ public class EnergyShield : MonoBehaviour
         Vector3 mousePos2D = Input.mousePosition;
         mousePos2D.z = -Camera.main.transform.position.z;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
-        Vector3 pos = this.transform.position;
+        Vector3 pos = transform.position;
         if (mousePos3D.x > 22f || mousePos3D.x < -22f) return;
         pos.x = mousePos3D.x;
         //pos.y = mousePos3D.y;
-        this.transform.position = pos;
+        transform.position = pos;
+
+
+        if (Input.GetMouseButtonDown(0))
+            TryFire();
     }
 
     private void OnCollisionEnter(Collision coll) {
         GameObject Collided = coll.gameObject;
         if (Collided.tag == "Dragon Egg"){
             Destroy(Collided);
-            int score = int.Parse(scoreGT.text);
-            score += 1;
-            scoreGT.text = score.ToString();
+            GameManager.Instance.score += 1;
+            energy++;
 
             audioSource = GetComponent<AudioSource>();
             audioSource.Play();
-        }
-        if (Collided.tag == "Firebolt"){
+        } else if (Collided.tag == "Firebolt") {
             
-            Bullet firebolt = Collided.gameObject.transform.parent.GetComponent<Bullet>();
-            //урон который нанесется игроку
-            int damage =  firebolt.damage;
-            health -= damage;
-
-            healthGT.text = "Здровье - " + health;
+            var firebolt = Collided.gameObject.transform.parent.GetComponent<Bullet>();
+            
+            health -= firebolt.damage;
+            UpdateHealth();
 
             if (health <= 0)
-                GameManager.Instance.SaveAfterDeath();
+                GameManager.Instance.PlayerDied();
         }
+    }
+
+    private void UpdateHealth()
+    {
+        healthGT.text = "Здровье - " + health;
+    }
+
+    private void TryFire()
+    {
+        if (energy < energyPerShot)
+            return;
+
+        energy -= energyPerShot;
+
+        Instantiate(projectilePrefab, transform.position, Quaternion.identity);
     }
 }

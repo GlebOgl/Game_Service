@@ -522,6 +522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8838848004536530978}
+  - component: {fileID: 3898602947861925399}
   m_Layer: 0
   m_Name: Spine01
   m_TagString: Untagged
@@ -545,6 +546,19 @@ Transform:
   m_Father: {fileID: 8838848004536513306}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3898602947861925399
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8838848004536679930}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 413.4715, y: 267.75885, z: 380}
+  m_Center: {x: 0.06669013, y: -52.68625, z: -4.3811326}
 --- !u!1 &8838848004536680016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,6 +1989,10 @@ MonoBehaviour:
   chanceDirection: 0.005
   reward: 20
   health: 120
+  boltsPerShot: 1
+  spread: 20
+  isMainDragon: 1
+  dragonOffset: 0
   autoAIM: 1
 --- !u!1 &8838848004536708546
 GameObject:

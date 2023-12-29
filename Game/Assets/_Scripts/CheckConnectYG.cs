@@ -33,7 +33,7 @@ public class CheckConnectYG : MonoBehaviour
         GameObject scoreBO = GameObject.Find("BestScore");
         scoreBest = scoreBO.GetComponent<TextMeshProUGUI>();
         scoreBest.text = "Best Score: " + YandexGame.savesData.bestScore.ToString();
-        if (YandexGame.savesData.achivment[0] == null && achiv){
+        if (YandexGame.savesData.achievement[0] == null && achiv){
 
         }
         else{
@@ -41,7 +41,7 @@ public class CheckConnectYG : MonoBehaviour
             Debug.Log(achiv);
             TextMeshProUGUI achivment = achiv.GetComponent<TextMeshProUGUI>();
             achivment.text = "";
-            foreach (string value in YandexGame.savesData.achivment){
+            foreach (string value in YandexGame.savesData.achievement){
                 achivment.text += value +"\n"; 
             }
         }
