@@ -1,2 +1,2 @@
-Build path: C:/UnityProjectsFast/Game_Service/Game/BUILD_WEB
-Build number: 149
+Build path: D:/game_builds/DragonPicker/V3
+Build number: 150
