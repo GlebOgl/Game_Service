@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private List<string> achievements = new List<string>();
+    private HashSet<string> achievements = new HashSet<string>();
     private int currentScore;
 
     void Start()
@@ -78,7 +79,9 @@ public class GameManager : MonoBehaviour
             playerName.text = YandexGame.playerName;
 
         achievements.Clear();
-        achievements.AddRange(YandexGame.savesData.achievement ?? new string[0]);
+        if (YandexGame.savesData.achievement != null)
+            foreach (var s in YandexGame.savesData.achievement)
+                achievements.Add(s);
     }
 
     public void StoreSave()

@@ -5,12 +5,9 @@
     "promptDone": false,
     "lastScore": 0,
     "bestScore": 249,
-    "coins": 13936,
-    "healthUps": 10,
-    "energyUps": 5,
-    "efficiencyUps": 3,
-    "achievement": [
-        "Береги щиты!!!",
-        "Береги щиты!!!"
-    ]
+    "coins": 0,
+    "healthUps": 0,
+    "energyUps": 0,
+    "efficiencyUps": 0,
+    "achievement": []
 }
