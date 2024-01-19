@@ -114,6 +114,8 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"GameEnded: currentScore={currentScore}, lastScore={YandexGame.savesData.lastScore}, bestScore={YandexGame.savesData.bestScore}");
 
+        YandexGame.savesData.coins += Mathf.CeilToInt(currentScore / 10f);
+
         StoreSave();
         
         StartCoroutine(LoadSceneWithDelay("_0Scene", 2f));
