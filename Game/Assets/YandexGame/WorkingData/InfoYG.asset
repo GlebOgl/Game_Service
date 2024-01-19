@@ -244,35 +244,6 @@ MonoBehaviour:
     it: []
     de: []
     hi: []
-  fontsTMP:
-    defaultFont: []
-    ru: []
-    en: []
-    tr: []
-    az: []
-    be: []
-    he: []
-    hy: []
-    ka: []
-    et: []
-    fr: []
-    kk: []
-    ky: []
-    lt: []
-    lv: []
-    ro: []
-    tg: []
-    tk: []
-    uk: []
-    uz: []
-    es: []
-    pt: []
-    ar: []
-    id: []
-    ja: []
-    it: []
-    de: []
-    hi: []
   fontsSizeCorrect:
     ru: 
     en: 
@@ -302,23 +273,29 @@ MonoBehaviour:
     de: 
     hi: 
   purshasesSimulation:
-  - id: gun
-    title: Gun
-    description: Product - Gun
-    imageURI: https://justplaygames.ru/public/Paymant1.png
-    priceValue: 5
+  - id: coins25
+    title: "25 \u043C\u043E\u043D\u0435\u0442"
+    description: "\u041A\u0443\u043F\u0438\u0442\u044C 25 \u043C\u043E\u043D\u0435\u0442"
+    imageURI: 
+    priceValue: 25
     consumed: 1
-  - id: armor
-    title: Armor
-    description: Product - Armor
-    imageURI: https://justplaygames.ru/public/Paymant2.png
-    priceValue: 10
+  - id: coins50
+    title: "50 \u043C\u043E\u043D\u0435\u0442"
+    description: "\u041A\u0443\u043F\u0438\u0442\u044C 50 \u043C\u043E\u043D\u0435\u0442"
+    imageURI: 
+    priceValue: 50
     consumed: 1
-  - id: grenade
-    title: Grenade
-    description: Product - Grenade
-    imageURI: https://justplaygames.ru/public/Paymant3.png
-    priceValue: 30
+  - id: coins200
+    title: "200 \u043C\u043E\u043D\u0435\u0442"
+    description: "\u041A\u0443\u043F\u0438\u0442\u044C 200 \u043C\u043E\u043D\u0435\u0442"
+    imageURI: 
+    priceValue: 200
+    consumed: 1
+  - id: coins1000
+    title: "1000 \u043C\u043E\u043D\u0435\u0442"
+    description: "\u041A\u0443\u043F\u0438\u0442\u044C 1000 \u043C\u043E\u043D\u0435\u0442"
+    imageURI: 
+    priceValue: 1000
     consumed: 1
   metricaEnable: 0
   metricaCounterID: 0

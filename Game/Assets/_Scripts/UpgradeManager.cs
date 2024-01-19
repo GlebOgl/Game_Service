@@ -108,6 +108,13 @@ public class UpgradeManager : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
+    public void AddCoins(int amount)
+    {
+        YandexGame.savesData.coins += amount;
+        GameManager.Instance.StoreSave();
+        DataUpdated.Invoke();
+    }
+
     private void OnSaveLoaded()
     {
         DataUpdated.Invoke();
