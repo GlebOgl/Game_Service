@@ -1,13 +1,13 @@
 {
-    "idSave": 74,
+    "idSave": 160,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
     "lastScore": 0,
     "bestScore": 249,
-    "coins": 0,
-    "healthUps": 0,
-    "energyUps": 0,
-    "efficiencyUps": 0,
+    "coins": 64,
+    "healthUps": 8,
+    "energyUps": 7,
+    "efficiencyUps": 8,
     "achievement": []
 }

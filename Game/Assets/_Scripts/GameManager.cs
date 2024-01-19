@@ -86,12 +86,6 @@ public class GameManager : MonoBehaviour
 
     public void StoreSave()
     {
-        YandexGame.savesData.lastScore = currentScore;
-        if (currentScore > YandexGame.savesData.bestScore)
-            YandexGame.savesData.bestScore = currentScore;
-        
-        Debug.Log($"StoreSave: currentScore={currentScore}, lastScore={YandexGame.savesData.lastScore}, bestScore={YandexGame.savesData.bestScore}");
-
         YandexGame.savesData.achievement = achievements.ToArray();
         YandexGame.SaveProgress();
     }
@@ -107,6 +101,12 @@ public class GameManager : MonoBehaviour
 
     public void GameEnded()
     {
+        YandexGame.savesData.lastScore = currentScore;
+        if (currentScore > YandexGame.savesData.bestScore)
+            YandexGame.savesData.bestScore = currentScore;
+
+        Debug.Log($"GameEnded: currentScore={currentScore}, lastScore={YandexGame.savesData.lastScore}, bestScore={YandexGame.savesData.bestScore}");
+
         StoreSave();
 
         YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);

@@ -77,8 +77,8 @@ public class UpgradeManager : MonoBehaviour
             {
                 var curUpgrades = save.healthUps;
 
-                var baseCost = 10.0;
-                var extraCost = 2.0 + 0.1 * curUpgrades;
+                var baseCost = 15.0;
+                var extraCost = 4.0 + 0.4 * curUpgrades;
                 var rawCost = baseCost + extraCost * curUpgrades;
                 return (int)System.Math.Ceiling(rawCost);
             }
@@ -88,8 +88,8 @@ public class UpgradeManager : MonoBehaviour
             {
                 var curUpgrades = save.energyUps;
 
-                var baseCost = 5.0;
-                var extraCost = 2.5 + 0.2 * curUpgrades;
+                var baseCost = 10.0;
+                var extraCost = 5.5 + 0.9 * curUpgrades;
                 var rawCost = baseCost + extraCost * curUpgrades;
                 return (int)System.Math.Ceiling(rawCost);
             }
@@ -98,8 +98,8 @@ public class UpgradeManager : MonoBehaviour
             {
                 var curUpgrades = save.efficiencyUps;
 
-                var baseCost = 8.0;
-                var extraCost = 2.0 + 0.3 * curUpgrades;
+                var baseCost = 15.0;
+                var extraCost = 4.5 + 0.9 * curUpgrades;
                 var rawCost = baseCost + extraCost * curUpgrades;
                 return (int)System.Math.Ceiling(rawCost);
             }
