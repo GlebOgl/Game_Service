@@ -12,6 +12,7 @@ public class Upgrade : MonoBehaviour
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(ButtonClicked);
+        UpdateText();
     }
 
     void OnEnable()
@@ -46,7 +47,7 @@ public class Upgrade : MonoBehaviour
                 return "" + UpgradeManager.Instance.EnergyPerEgg;
 
             case UpgradeManager.UpgradeType.ENERGY_EFFICIENCY:
-                return "" + UpgradeManager.Instance.PlayerFireCost;
+                return "" + UpgradeManager.Instance.EnergyPerShot;
         }
         throw new System.NotImplementedException();
     }

@@ -13,6 +13,7 @@ public class EnergyShield : MonoBehaviour
     public int health = 100;
 
     public float energy = 0;
+    public float energyInEgg = 1;
     public float energyPerShot = 2;
 
     public GameObject projectilePrefab;
@@ -20,6 +21,11 @@ public class EnergyShield : MonoBehaviour
 
     void Start() {
         healthGT = GameObject.Find("Health").GetComponent<TextMeshProUGUI>();
+
+        health = UpgradeManager.Instance.PlayerHealth;
+        energyPerShot = UpgradeManager.Instance.EnergyPerShot;
+        energyInEgg = UpgradeManager.Instance.EnergyPerEgg;
+
         UpdateHealth();
     }
 
@@ -45,7 +51,7 @@ public class EnergyShield : MonoBehaviour
         if (Collided.tag == "Dragon Egg"){
             Destroy(Collided);
             GameManager.Instance.score += 1;
-            energy++;
+            energy += energyInEgg;
 
             audioSource = GetComponent<AudioSource>();
             audioSource.Play();

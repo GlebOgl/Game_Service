@@ -10,11 +10,11 @@ public class UpgradeManager : MonoBehaviour
 
     public UnityAction DataUpdated;
 
-    public float PlayerHealth => 100 + 25 * YandexGame.savesData.healthUps;
+    public int PlayerHealth => 100 + 25 * YandexGame.savesData.healthUps;
 
     public float EnergyPerEgg => 1.0f + 0.4f * YandexGame.savesData.energyUps;
 
-    public float PlayerFireCost => 1.0f / (2.0f + YandexGame.savesData.efficiencyUps);
+    public float EnergyPerShot => 1.0f / (2.0f + YandexGame.savesData.efficiencyUps);
     public int Coins => YandexGame.savesData.coins;
 
 
@@ -63,6 +63,7 @@ public class UpgradeManager : MonoBehaviour
                 break;
         }
 
+        GameManager.Instance.StoreSave();
         DataUpdated.Invoke();
         return true;
     }

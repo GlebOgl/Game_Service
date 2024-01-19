@@ -1,12 +1,16 @@
 {
-    "idSave": 48,
+    "idSave": 68,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "lastScore": 1,
+    "lastScore": 100,
     "bestScore": 249,
-    "coins": 10000,
+    "coins": 9686,
+    "healthUps": 10,
+    "energyUps": 5,
+    "efficiencyUps": 3,
     "achievement": [
+        "Береги щиты!!!",
         "Береги щиты!!!"
     ]
 }

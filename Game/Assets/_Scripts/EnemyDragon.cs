@@ -42,11 +42,9 @@ public class EnemyDragon : MonoBehaviour
             GameObject bolt = Instantiate<GameObject>(fireboltPrefab);
             bolt.transform.position = transform.position + myVector;
 
-            if (autoAIM)
-            {
+            if (autoAIM && Player)
                 bolt.transform.LookAt(Player.transform.position);
 
-            }
             bolt.transform.localEulerAngles += new Vector3(shootAngle, 0, 0);
             shootAngle += angleChange;
         }
