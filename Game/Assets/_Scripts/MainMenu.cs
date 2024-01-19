@@ -16,12 +16,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void OnEnable()
+    void Start()
     {
         UpgradeManager.Instance.DataUpdated += UpdateCoins;
+        UpdateCoins();
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         UpgradeManager.Instance.DataUpdated -= UpdateCoins;
     }

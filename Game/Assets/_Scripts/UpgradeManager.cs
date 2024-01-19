@@ -64,7 +64,7 @@ public class UpgradeManager : MonoBehaviour
         }
 
         GameManager.Instance.StoreSave();
-        DataUpdated.Invoke();
+        DataUpdated?.Invoke();
         return true;
     }
 
@@ -112,12 +112,12 @@ public class UpgradeManager : MonoBehaviour
     {
         YandexGame.savesData.coins += amount;
         GameManager.Instance.StoreSave();
-        DataUpdated.Invoke();
+        DataUpdated?.Invoke();
     }
 
     private void OnSaveLoaded()
     {
-        DataUpdated.Invoke();
+        DataUpdated?.Invoke();
     }
 
     public enum UpgradeType

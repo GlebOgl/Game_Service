@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"GameEnded: currentScore={currentScore}, lastScore={YandexGame.savesData.lastScore}, bestScore={YandexGame.savesData.bestScore}");
 
-        YandexGame.savesData.coins += Mathf.CeilToInt(currentScore / 10f);
+        UpgradeManager.Instance.AddCoins(Mathf.CeilToInt(currentScore / 10f));
 
         StoreSave();
         
