@@ -28,17 +28,12 @@ public class Bullet : MonoBehaviour
     {
         timeLeft -= Time.deltaTime;
         if ( timeLeft < 0 )
-        {
-            boltCollider.enabled = true;
-        }
+            if (boltCollider)
+                boltCollider.enabled = true;
 
         transform.position = transform.position + transform.forward * speed * Time.deltaTime; //new Vector3(0, -speed * Time.deltaTime, 0);
 
         if (transform.position.y < -20.2)
-        {
-            var b = GameObject.FindGameObjectWithTag("Firebolt");
-            Destroy(b);
-        }
-        
+            Destroy(gameObject);
     }
 }
