@@ -21,6 +21,11 @@ namespace YG
         public int lastScore;
         public int bestScore = 0;
         public int coins = 0;
+        
+        public int healthUps = 0;
+        public int energyUps = 0;
+        public int efficiencyUps = 0;
+
         public string[] achievement;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны

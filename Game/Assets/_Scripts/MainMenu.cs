@@ -1,15 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame(){
+    public TextMeshProUGUI coinsText;
+
+    public void PlayGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void QuitGame(){
+    public void QuitGame() {
         Application.Quit();
+    }
+
+    void OnEnable()
+    {
+        UpgradeManager.Instance.DataUpdated += UpdateCoins;
+    }
+
+    void OnDisable()
+    {
+        UpgradeManager.Instance.DataUpdated -= UpdateCoins;
+    }
+
+    private void UpdateCoins()
+    {
+        coinsText.text = "Монеты: " + UpgradeManager.Instance.Coins;
     }
 }
