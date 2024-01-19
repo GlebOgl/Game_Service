@@ -86,6 +86,9 @@ public class GameManager : MonoBehaviour
 
     public void StoreSave()
     {
+        if (!YandexGame.SDKEnabled || (YandexGame.savesData == null))
+            return;
+
         YandexGame.savesData.achievement = achievements.ToArray();
         YandexGame.SaveProgress();
     }
@@ -101,16 +104,18 @@ public class GameManager : MonoBehaviour
 
     public void GameEnded()
     {
-        YandexGame.savesData.lastScore = currentScore;
-        if (currentScore > YandexGame.savesData.bestScore)
-            YandexGame.savesData.bestScore = currentScore;
+        if (YandexGame.SDKEnabled && (YandexGame.savesData != null)) {
+            YandexGame.savesData.lastScore = currentScore;
+            if (currentScore > YandexGame.savesData.bestScore)
+                YandexGame.savesData.bestScore = currentScore;
+
+            YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);
+        }
 
         Debug.Log($"GameEnded: currentScore={currentScore}, lastScore={YandexGame.savesData.lastScore}, bestScore={YandexGame.savesData.bestScore}");
 
         StoreSave();
-
-        YandexGame.NewLeaderboardScores("TOPPlayerScore", currentScore);
-
+        
         StartCoroutine(LoadSceneWithDelay("_0Scene", 2f));
 
         LoadSave();
